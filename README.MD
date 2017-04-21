@@ -26,7 +26,7 @@ Several moderation engines are available for you to choose from (nudity detectio
 output = client.check('nudity').image('http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg')
 
 # Detect nudity, weapons, alcohol, drugs and faces in an image, along with image properties and type
-output = client.check('nudity, type, properties, wad, face').image('http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg')
+output = client.check('nudity', 'type', 'properties', 'wad', face').image('http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg')
 ```
 
 ## Moderate a local image:
@@ -35,7 +35,7 @@ output = client.check('nudity, type, properties, wad, face').image('http://img09
 output = client.check('nudity').image('/full/path/to/image.jpg')
 
 # Detect nudity, weapons, alcohol, drugs and faces in an image, along with image properties and type
-output = client.check('nudity, type, properties, wad, face').image('/full/path/to/image.jpg')
+output = client.check('nudity', 'type', 'properties', 'wad', 'face').image('/full/path/to/image.jpg')
 ```
 
 # Video and Stream Moderation
