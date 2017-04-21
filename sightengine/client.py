@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Copyright (c) 2015 Sightengine
-http://www.sightengine.com/
+Copyright (c) 2017 Sightengine
+http://sightengine.com/
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -19,38 +19,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import requests
-import json
+import requests, json
+from .check import Check
 
 class SightengineClient(object):
+    modelVersions = {}
 
     def __init__(self, api_user, api_secret):
-        """
-        Sightengine Client initialization
-        """
-        self._api_user = api_user
-        self._api_secret = api_secret
+        self.api_user = api_user
+        self.api_secret = api_secret
+        self.endpoint = 'https://api.sightengine.com/'
 
-    @property
-    def api_user(self):
-        return self._api_user
+    def feedback(self, model, modelClass, image):
+        if not model:
+            raise Exception('Please provide the version of the model ' + model)
 
-    @property
-    def api_secret(self):
-        return self._api_secret
-
-    def check_nudity(self, image):
-        endpoint = 'http://api.sightengine.com'
-        version = '1.0'
-        url = endpoint+'/'+version+'/nudity.json'
-
-        if image[:7].lower()=='http://' or image[:8].lower()=='https://':
-            r = requests.post(url, data={'url':image, 'api_user':self._api_user, 'api_secret':self._api_secret})
+        if image.lower().startswith(('http://', 'https://')):
+            url = self.endpoint + '1.0/feedback.json'
+            r = requests.get(url, params={'model': model, 'class': modelClass, 'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret})
         else:
-            r = requests.post(url, files={'photo': open(image, 'rb')}, data={'api_user':self._api_user, 'api_secret':self._api_secret})
-
-        r.raise_for_status()
+            url =  self.endpoint + '1.0/feedback.json'
+            r = requests.post(url, files={'media': open(image, 'rb')}, data={'model': model, 'class': modelClass, 'api_user': self.api_user, 'api_secret': self.api_secret})
 
         output = json.loads(r.text)
-
         return output
+
+    def check(self, *args):
+        return Check(self.api_user,self.api_secret, *args)
+
