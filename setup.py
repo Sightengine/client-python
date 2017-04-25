@@ -5,7 +5,7 @@ version_file = open(os.path.join(os.path.dirname(__file__), 'VERSION'))
 VERSION = version_file.read().strip()
 
 setup(
-  name = 'Sightengine Python Client',
+  name = 'sightengine',
   packages = ['sightengine'],
   version = VERSION,
   description = 'Sightengine Python client',
