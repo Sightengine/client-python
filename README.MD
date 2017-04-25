@@ -1,5 +1,5 @@
   <a href="https://travis-ci.org/Sightengine/client-python/">
-   <img src="https://api.travis-ci.org/sightengine/client-python.svg?branch=master">
+   <img src="https://travis-ci.org/Sightengine/client-python.svg?branch=master">
   </a>
 
 # About
