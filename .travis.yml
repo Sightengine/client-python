@@ -8,6 +8,6 @@ python:
   - "3.6"
 
 install:
-  - pip install requests
+  - pip install requests setuptools
 script:
   - python tests.py

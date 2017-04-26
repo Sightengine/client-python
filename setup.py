@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 import os
 
 version_file = open(os.path.join(os.path.dirname(__file__), 'VERSION'))
@@ -10,5 +10,6 @@ setup(
   version = VERSION,
   description = 'Sightengine Python client',
   author = 'Sightengine',
+  author_email='support@sightengine.com',
   url = 'https://github.com/Sightengine/client-python'
 )
