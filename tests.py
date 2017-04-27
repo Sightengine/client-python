@@ -52,5 +52,9 @@ class Tests(unittest.TestCase):
         self.assertEqual('failure', feedback4['status'])
         self.assertEqual('argument_error', feedback4['error']['type'])
 
+        feedback4 = client.feedback('nudity', 'raw9999','https://d3m9459r9kwism.cloudfront.net/img/examples/example5.jpg')
+        self.assertEqual('failure', feedback4['status'])
+        self.assertEqual('argument_error', feedback4['error']['type'])
+
 if __name__ == '__main__':
     unittest.main()
