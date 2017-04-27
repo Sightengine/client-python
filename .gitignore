@@ -5,3 +5,11 @@ sightengine/*.pyc
 *.iml
 
 *.xml
+
+build
+
+dist
+
+sightengine.egg-info
+
+MANIFEST
