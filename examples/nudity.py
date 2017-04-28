@@ -1,6 +1,6 @@
 from sightengine.client import SightengineClient
 
-client = SightengineClient('test', 'test')
+client = SightengineClient('API user', 'API secret')
 
 ##### feedback
 

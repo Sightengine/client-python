@@ -3,7 +3,7 @@ from sightengine.client import SightengineClient
 
 class Tests(unittest.TestCase):
     def test_nudityModel(self):
-        client = SightengineClient('test', 'test')
+        client = SightengineClient('1234', 'test')
         checkNudity = client.check('nudity')
 
         output = checkNudity.image('https://d3m9459r9kwism.cloudfront.net/img/examples/example5.jpg')
