@@ -8,6 +8,10 @@ Use the Sightengine Moderation API to instantly moderate images and videos. See 
 
 Before starting, please make sure you have created an account on https://sightengine.com
 
+# Install
+
+pip install sightengine
+
 # Initialize the client
 
 You will need your API USER and API SECRET to initialize the client. You can find both of them on your Sightengine account.
