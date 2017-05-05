@@ -21,7 +21,6 @@ class Tests(unittest.TestCase):
         output = checkNudity.image('https://sightengine.com/assets/img/examples/example5.jpg')
         self.assertEqual('success', output['status'])
 
-
         image = os.path.join(os.path.dirname(__file__), 'assets', 'image.jpg')
 
         output2 = checkNudity.image(image)
@@ -30,7 +29,7 @@ class Tests(unittest.TestCase):
     def test_feedback(self):
         client = SightengineClient('1234', 'test')
 
-        feedback1 = client.feedback('nudity', 'raw', 'https://d3m9459r9kwism.cloudfront.net/img/examples/example5.jpg')
+        feedback1 = client.feedback('nudity', 'raw', 'https://sightengine.com/assets/img/examples/example5.jpg')
         self.assertEqual('success', feedback1['status'])
 
         image = os.path.join(os.path.dirname(__file__), 'assets', 'image.jpg')
