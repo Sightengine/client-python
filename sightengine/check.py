@@ -21,6 +21,13 @@ THE SOFTWARE.
 
 import requests, json
 
+headers = requests.utils.default_headers()
+headers.update(
+    {
+        'User-Agent': 'SE-SDK-Python ' + '1.1',
+    }
+)
+
 class Check(object):
     def __init__(self, api_user, api_secret, *args):
         self.api_user = api_user
@@ -42,27 +49,27 @@ class Check(object):
         if numberOfModels > 0:
             if image.lower().startswith(('http://', 'https://')):
                 url = self.endpoint + '1.0/check.json'
-                r = requests.get(url, params={'models': self.modelsType, 'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret})
+                r = requests.get(url, params={'models': self.modelsType, 'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
             else:
                 url = self.endpoint + '1.0/check.json'
-                r = requests.post(url, files={'media': open(image, 'rb')}, data={'models': self.modelsType,'api_user': self.api_user, 'api_secret': self.api_secret})
+                r = requests.post(url, files={'media': open(image, 'rb')}, data={'models': self.modelsType,'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
 
             output = json.loads(r.text)
             return output
         else:
             if image.lower().startswith(('http://', 'https://')):
                 url = self.endpoint + '1.0' + '/' + self.modelsType + '.json'
-                r = requests.get(url, params={'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret})
+                r = requests.get(url, params={'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
             else:
                 url = self.endpoint + '1.0' + '/' + self.modelsType + '.json'
-                r = requests.post(url, files={'media': open(image, 'rb')}, data={'api_user': self.api_user,'api_secret': self.api_secret})
+                r = requests.post(url, files={'media': open(image, 'rb')}, data={'api_user': self.api_user,'api_secret': self.api_secret},  headers=headers)
 
             output = json.loads(r.text)
             return output
 
     def video(self, videoUrl, callbackUrl):
         url =  self.endpoint + '1.0/video/moderation.json?stream_url=' + videoUrl + '&callback_url=' + callbackUrl + '&api_user=' + self.api_user + '&api_secret=' + self.api_secret
-        r = requests.get(url)
+        r = requests.get(url,  headers=headers)
 
         output = json.loads(r.text)
         return output

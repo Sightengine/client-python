@@ -9,14 +9,10 @@ class Tests(unittest.TestCase):
         output = checkNudity.image('https://sightengine.com/assets/img/examples/example5.jpg')
         self.assertEqual('success', output['status'])
 
-        output2 = checkNudity.image('https://incorrectUrl.jpg')
-        self.assertEqual('failure', output2['status'])
-        self.assertEqual('media_error', output2['error']['type'])
-
         image = os.path.join(os.path.dirname(__file__), 'assets', 'image.jpg')
 
-        output3 = checkNudity.image(image)
-        self.assertEqual('success', output3['status'])
+        output2 = checkNudity.image(image)
+        self.assertEqual('success', output2['status'])
 
     def test_allModel(self):
         client = SightengineClient('1234', 'test')
@@ -25,14 +21,11 @@ class Tests(unittest.TestCase):
         output = checkNudity.image('https://sightengine.com/assets/img/examples/example5.jpg')
         self.assertEqual('success', output['status'])
 
-        output2 = checkNudity.image('https://incorrectUrl.jpg')
-        self.assertEqual('failure', output2['status'])
-        self.assertEqual('media_error', output2['error']['type'])
 
         image = os.path.join(os.path.dirname(__file__), 'assets', 'image.jpg')
 
-        output3 = checkNudity.image(image)
-        self.assertEqual('success', output3['status'])
+        output2 = checkNudity.image(image)
+        self.assertEqual('success', output2['status'])
 
     def test_feedback(self):
         client = SightengineClient('1234', 'test')
@@ -44,13 +37,9 @@ class Tests(unittest.TestCase):
         feedback2 = client.feedback('nudity', 'safe', image)
         self.assertEqual('success', feedback2['status'])
 
-        feedback3 = client.feedback('nudity', 'raw', 'https://incorrectUrl.jpg')
+        feedback3 = client.feedback('model9999', 'raw', 'https://sightengine.com/assets/img/examples/example5.jpg')
         self.assertEqual('failure', feedback3['status'])
-        self.assertEqual('media_error', feedback3['error']['type'])
-
-        feedback4 = client.feedback('model9999', 'raw', 'https://sightengine.com/assets/img/examples/example5.jpg')
-        self.assertEqual('failure', feedback4['status'])
-        self.assertEqual('argument_error', feedback4['error']['type'])
+        self.assertEqual('argument_error', feedback3['error']['type'])
 
         feedback4 = client.feedback('nudity', 'raw9999','https://sightengine.com/assets/img/examples/example5.jpg')
         self.assertEqual('failure', feedback4['status'])

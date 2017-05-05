@@ -22,6 +22,13 @@ THE SOFTWARE.
 import requests, json
 from .check import Check
 
+headers = requests.utils.default_headers()
+headers.update(
+    {
+        'User-Agent': 'SE-SDK-Python ' + '1.1',
+    }
+)
+
 class SightengineClient(object):
     modelVersions = {}
 
@@ -36,10 +43,10 @@ class SightengineClient(object):
 
         if image.lower().startswith(('http://', 'https://')):
             url = self.endpoint + '1.0/feedback.json'
-            r = requests.get(url, params={'model': model, 'class': modelClass, 'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret})
+            r = requests.get(url, params={'model': model, 'class': modelClass, 'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret}, headers=headers)
         else:
             url =  self.endpoint + '1.0/feedback.json'
-            r = requests.post(url, files={'media': open(image, 'rb')}, data={'model': model, 'class': modelClass, 'api_user': self.api_user, 'api_secret': self.api_secret})
+            r = requests.post(url, files={'media': open(image, 'rb')}, data={'model': model, 'class': modelClass, 'api_user': self.api_user, 'api_secret': self.api_secret}, headers=headers)
 
         output = json.loads(r.text)
         return output
