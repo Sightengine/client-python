@@ -17,7 +17,7 @@ class Tests(unittest.TestCase):
     def test_allModel(self):
         client = SightengineClient('1234', 'test')
 
-        checkNudity = client.check('nudity','wad','properties','type','face')
+        checkNudity = client.check('nudity','wad','properties','type','face','celebrities')
 
         output = checkNudity.image('https://sightengine.com/assets/img/examples/example5.jpg')
         self.assertEqual('success', output['status'])
