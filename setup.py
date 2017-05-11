@@ -1,8 +1,9 @@
 from setuptools import setup
 import os
 
-version_file = open(os.path.join(os.path.dirname(__file__), 'VERSION'))
-VERSION = version_file.read().strip()
+VERSION = None
+path_version = os.path.join(os.path.dirname(__file__), '../version.py')
+exec(open(path_version).read())
 
 setup(
   name = 'sightengine',

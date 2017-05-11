@@ -19,12 +19,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import requests, json
+import requests, json, os
+
+VERSION = None
+path_version = os.path.join(os.path.dirname(__file__), '../version.py')
+exec(open(path_version).read())
 
 headers = requests.utils.default_headers()
 headers.update(
     {
-        'User-Agent': 'SE-SDK-Python ' + '1.1',
+        'User-Agent': 'SE-SDK-Python ' + VERSION,
     }
 )
 
