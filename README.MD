@@ -17,7 +17,7 @@ pip install sightengine
 You will need your API USER and API SECRET to initialize the client. You can find both of them on your Sightengine account.
 ```python
 from sightengine import SightengineClient
-client = SightengineClient("YOUR_API_USER", "YOUR_API_SECRET")
+client = SightengineClient('{api_user}', '{api_secret}')
 ```
 
 # Moderate an image
