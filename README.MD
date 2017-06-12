@@ -16,7 +16,7 @@ pip install sightengine
 
 You will need your API USER and API SECRET to initialize the client. You can find both of them on your Sightengine account.
 ```python
-from sightengine import SightengineClient
+from sightengine.client import SightengineClient
 client = SightengineClient('{api_user}', '{api_secret}')
 ```
 
