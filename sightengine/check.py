@@ -20,6 +20,7 @@ THE SOFTWARE.
 """
 
 import requests, json, os
+from io import BytesIO
 
 VERSION = None
 path_version = os.path.join(os.path.dirname(__file__), '../version.py')
@@ -41,7 +42,6 @@ class Check(object):
 
         if len(args) > 1:
             for arg in args:
-                print(arg)
                 self.modelsType += arg + ','
             self.modelsType = self.modelsType[:-1]
         else:
@@ -51,21 +51,25 @@ class Check(object):
         numberOfModels = self.modelsType.count(",")
 
         if numberOfModels > 0:
-            if image.lower().startswith(('http://', 'https://')):
-                url = self.endpoint + '1.0/check.json'
+            url = self.endpoint + '1.0/check.json'
+
+            if isinstance(image, bytes):
+                r = requests.post(url, files={'media': BytesIO(image)}, data={'models': self.modelsType,'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
+            elif image.lower().startswith(('http://', 'https://')):
                 r = requests.get(url, params={'models': self.modelsType, 'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
             else:
-                url = self.endpoint + '1.0/check.json'
                 r = requests.post(url, files={'media': open(image, 'rb')}, data={'models': self.modelsType,'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
 
             output = json.loads(r.text)
             return output
         else:
-            if image.lower().startswith(('http://', 'https://')):
-                url = self.endpoint + '1.0' + '/' + self.modelsType + '.json'
+            url = self.endpoint + '1.0' + '/' + self.modelsType + '.json'
+
+            if isinstance(image, bytes):
+                r = requests.post(url, files={'media': BytesIO(image)}, data={'api_user': self.api_user,'api_secret': self.api_secret},  headers=headers)
+            elif image.lower().startswith(('http://', 'https://')):
                 r = requests.get(url, params={'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
             else:
-                url = self.endpoint + '1.0' + '/' + self.modelsType + '.json'
                 r = requests.post(url, files={'media': open(image, 'rb')}, data={'api_user': self.api_user,'api_secret': self.api_secret},  headers=headers)
 
             output = json.loads(r.text)
