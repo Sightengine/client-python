@@ -37,7 +37,7 @@ class Check(object):
     def __init__(self, api_user, api_secret, *args):
         self.api_user = api_user
         self.api_secret = api_secret
-        self.endpoint = 'https://api.sightengine.com/'
+        self.endpoint = 'https://api.sightengine.com/1.0/'
         self.modelsType = ''
 
         if len(args) > 1:
@@ -47,36 +47,26 @@ class Check(object):
         else:
             self.modelsType = args[0]
 
-    def image(self, image):
-        numberOfModels = self.modelsType.count(",")
+    def set_url(self, imageUrl):
+        r = requests.get(self.endpoint + 'check.json', params={'models': self.modelsType, 'url': imageUrl, 'api_user': self.api_user, 'api_secret': self.api_secret}, headers=headers)
 
-        if numberOfModels > 0:
-            url = self.endpoint + '1.0/check.json'
+        output = json.loads(r.text)
+        return output
 
-            if isinstance(image, bytes):
-                r = requests.post(url, files={'media': BytesIO(image)}, data={'models': self.modelsType,'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
-            elif image.lower().startswith(('http://', 'https://')):
-                r = requests.get(url, params={'models': self.modelsType, 'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
-            else:
-                r = requests.post(url, files={'media': open(image, 'rb')}, data={'models': self.modelsType,'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
+    def set_file(self, file):
+        r = requests.post(self.endpoint + 'check.json', files={'media': open(file, 'rb')}, data={'models': self.modelsType, 'api_user': self.api_user,'api_secret': self.api_secret}, headers=headers)
 
-            output = json.loads(r.text)
-            return output
-        else:
-            url = self.endpoint + '1.0' + '/' + self.modelsType + '.json'
+        output = json.loads(r.text)
+        return output
 
-            if isinstance(image, bytes):
-                r = requests.post(url, files={'media': BytesIO(image)}, data={'api_user': self.api_user,'api_secret': self.api_secret},  headers=headers)
-            elif image.lower().startswith(('http://', 'https://')):
-                r = requests.get(url, params={'url': image, 'api_user': self.api_user, 'api_secret': self.api_secret},  headers=headers)
-            else:
-                r = requests.post(url, files={'media': open(image, 'rb')}, data={'api_user': self.api_user,'api_secret': self.api_secret},  headers=headers)
+    def set_bytes(self, binaryImage):
+        r = requests.post(self.endpoint + 'check.json', files={'media': BytesIO(binaryImage)}, data={'models': self.modelsType, 'api_user': self.api_user, 'api_secret': self.api_secret}, headers=headers)
 
-            output = json.loads(r.text)
-            return output
+        output = json.loads(r.text)
+        return output
 
     def video(self, videoUrl, callbackUrl):
-        url =  self.endpoint + '1.0/video/moderation.json?stream_url=' + videoUrl + '&callback_url=' + callbackUrl + '&api_user=' + self.api_user + '&api_secret=' + self.api_secret
+        url =  self.endpoint + 'video/moderation.json?stream_url=' + videoUrl + '&callback_url=' + callbackUrl + '&api_user=' + self.api_user + '&api_secret=' + self.api_secret
         r = requests.get(url,  headers=headers)
 
         output = json.loads(r.text)
