@@ -30,19 +30,28 @@ Several moderation engines are available for you to choose from (nudity detectio
 
 ```python
 # Detect nudity in an image
-output = client.check('nudity').image('http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg')
+output = client.check('nudity').set_url('http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg')
 
 # Detect nudity, weapons, alcohol, drugs and faces in an image, along with image properties and type
-output = client.check('nudity', 'type', 'properties', 'wad', 'face').image('http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg')
+output = client.check('nudity', 'type', 'properties', 'wad', 'face').set_url('http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg')
 ```
 
 ## Moderate a local image:
 ```python
 # Detect nudity in an image
-output = client.check('nudity').image('/full/path/to/image.jpg')
+output = client.check('nudity').set_file('/full/path/to/image.jpg')
 
 # Detect nudity, weapons, alcohol, drugs and faces in an image, along with image properties and type
-output = client.check('nudity', 'type', 'properties', 'wad', 'face').image('/full/path/to/image.jpg')
+output = client.check('nudity', 'type', 'properties', 'wad', 'face').set_file('/full/path/to/image.jpg')
+```
+
+## Moderate a binary image:
+```python
+# Detect nudity in an image
+output = client.check('nudity').set_bytes(binary_image)
+
+# Detect nudity, weapons, alcohol, drugs and faces in an image, along with image properties and type
+output = client.check('nudity', 'type', 'properties', 'wad', 'face').set_bytes(binary_image)
 ```
 
 # Video and Stream Moderation
@@ -93,4 +102,3 @@ Example of feedback through a public URL::
 client.feedback("nudity","safe", "http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg")
 client.feedback("type","illustration", "http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg")
 client.feedback("nudity","raw", "http://img09.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg")
-```

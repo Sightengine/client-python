@@ -6,36 +6,36 @@ class Tests(unittest.TestCase):
         client = SightengineClient('1234', 'test')
         checkNudity = client.check('nudity')
 
-        output = checkNudity.image('https://sightengine.com/assets/img/examples/example5.jpg')
-        self.assertEqual('success', output['status'])
-
         image = os.path.join(os.path.dirname(__file__), 'assets', 'image.jpg')
 
-        output2 = checkNudity.image(image)
+        output = checkNudity.set_url('https://sightengine.com/assets/img/examples/example5.jpg')
+        self.assertEqual('success', output['status'])
+
+        output2 = checkNudity.set_file(image)
         self.assertEqual('success', output2['status'])
 
         with open(image, mode='rb') as img:
-            imageContent = img.read()
+            binary_image = img.read()
 
-        output3 = checkNudity.image(imageContent)
+        output3 = checkNudity.set_bytes(binary_image)
         self.assertEqual('success', output3['status'])
 
     def test_allModel(self):
         client = SightengineClient('1234', 'test')
         checkAll = client.check('nudity','wad','properties','type','face','celebrities')
 
-        output = checkAll.image('https://sightengine.com/assets/img/examples/example5.jpg')
-        self.assertEqual('success', output['status'])
-
         image = os.path.join(os.path.dirname(__file__), 'assets', 'image.jpg')
 
-        output2 = checkAll.image(image)
+        output = checkAll.set_url('https://sightengine.com/assets/img/examples/example5.jpg')
+        self.assertEqual('success', output['status'])
+
+        output2 = checkAll.set_file(image)
         self.assertEqual('success', output2['status'])
 
         with open(image, mode='rb') as img:
-            imageContent = img.read()
+            binary_image = img.read()
 
-        output3 = checkAll.image(imageContent)
+        output3 = checkAll.set_bytes(binary_image)
         self.assertEqual('success', output3['status'])
 
     def test_feedback(self):
