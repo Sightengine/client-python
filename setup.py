@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 
 VERSION = None
-path_version = os.path.join(os.path.dirname(__file__), '../version.py')
+path_version = os.path.join(os.path.dirname(__file__), './version.py')
 exec(open(path_version).read())
 
 setup(
