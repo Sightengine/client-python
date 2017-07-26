@@ -20,11 +20,10 @@ THE SOFTWARE.
 """
 
 import requests, json, os
+import sightengine
 from .check import Check
 
-VERSION = None
-path_version = os.path.join(os.path.dirname(__file__), '../version.py')
-exec(open(path_version).read())
+VERSION = sightengine.__version__
 
 headers = requests.utils.default_headers()
 headers.update(
