@@ -4,27 +4,29 @@ client = SightengineClient('API user', 'API secret')
 
 ##### feedback
 
-feedback1 = client.feedback('nudity', 'raw', 'https://d3m9459r9kwism.cloudfront.net/img/examples/example5.jpg')
-feedback2 = client.feedback('nudity','safe', '/path/to/local/file.jpg')
+#feedback1 = client.feedback('nudity', 'raw', 'https://d3m9459r9kwism.cloudfront.net/img/examples/example5.jpg')
+#feedback2 = client.feedback('nudity','safe', '/path/to/local/file.jpg')
 
-print(feedback1)
-print(feedback2)
+#print(feedback1)
+#print(feedback2)
 
 ####### check image
 
-checkNudity = client.check('nudity')
+#checkNudity = client.check('nudity')
 
-output = checkNudity.set_file('/path/to/local/file.jpg')
-output2 = checkNudity.set_url('https://d3m9459r9kwism.cloudfront.net/img/examples/example5.jpg')
+#output = checkNudity.set_file('/path/to/local/file.jpg')
+#output2 = checkNudity.set_url('https://d3m9459r9kwism.cloudfront.net/img/examples/example5.jpg')
 
 # assign binary_image
-output3 = checkNudity.set_bytes(binary_image)
+#output3 = checkNudity.set_bytes(binary_image)
 
-print(output)
-print(output2)
-print(output3)
+#print(output)
+#print(output2)
+#print(output3)
 
 ####### check video
 
-checkNudity = client.check('nudity')
-checkNudity.video('http://www.quirksmode.org/html5/videos/big_buck_bunny.webm', 'http://requestb.in/1nm1vw11')
+#checkNudity = client.check('nudity', 'wad')
+#output = checkNudity.video('http://www.quirksmode.org/html5/videos/big_buck_bunny.webm', 'http://requestb.in/1nm1vw11')
+
+#print(output)
