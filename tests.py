@@ -56,5 +56,12 @@ class Tests(unittest.TestCase):
         self.assertEqual('failure', feedback4['status'])
         self.assertEqual('argument_error', feedback4['error']['type'])
 
+    def test_video(self):
+        client = SightengineClient('1234', 'test')
+
+        check = client.check('nudity','wad','properties','type','face','celebrities')
+        video_output = check.video('http://www.quirksmode.org/html5/videos/big_buck_bunny.webm', 'http://requestb.in/1nm1vw11')
+        self.assertEqual('success', video_output['status'])
+
 if __name__ == '__main__':
     unittest.main()
