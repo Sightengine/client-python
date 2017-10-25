@@ -22,7 +22,7 @@ class Tests(unittest.TestCase):
 
     def test_allModel(self):
         client = SightengineClient('1234', 'test')
-        checkAll = client.check('nudity','wad','properties','type','face','celebrities')
+        checkAll = client.check('nudity','wad','properties','type','faces','celebrities')
 
         image = os.path.join(os.path.dirname(__file__), 'assets', 'image.jpg')
 
@@ -59,7 +59,7 @@ class Tests(unittest.TestCase):
     def test_video(self):
         client = SightengineClient('1234', 'test')
 
-        check = client.check('nudity','wad','properties','type','face','celebrities')
+        check = client.check('nudity','wad','properties','type','faces','celebrities')
         video_output = check.video('https://sightengine.com/assets/stream/examples/funfair.mp4', 'http://requestb.in/1nm1vw11')
         self.assertEqual('success', video_output['status'])
 
