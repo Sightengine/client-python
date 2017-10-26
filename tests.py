@@ -58,7 +58,7 @@ class Tests(unittest.TestCase):
 
     def test_video(self):
         client = SightengineClient('1234', 'test')
-        check = client.check('nudity','wad','properties','type','faces','celebrities')
+        check = client.check('wad','nudity','properties','type','faces','celebrities')
 
         video_output = check.video('https://sightengine.com/assets/stream/examples/funfair.mp4', 'http://requestb.in/1nm1vw11')
         self.assertEqual('success', video_output['status'])
