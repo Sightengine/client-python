@@ -64,8 +64,7 @@ class Check(object):
         return output
 
     def video(self, videoUrl, callbackUrl):
-        url =  self.endpoint + 'video/moderation.json?stream_url=' + videoUrl + '&callback_url=' + callbackUrl + '&api_user=' + self.api_user + '&api_secret=' + self.api_secret
-        r = requests.get(url,  headers=headers)
+        r = requests.get(self.endpoint + 'video/check.json', params={'models': self.modelsType, 'callback_url': callbackUrl, 'stream_url': videoUrl, 'api_user': self.api_user, 'api_secret': self.api_secret}, headers=headers)
 
         output = json.loads(r.text)
         return output

@@ -26,5 +26,7 @@ print(output3)
 
 ####### check video
 
-checkNudity = client.check('nudity')
-checkNudity.video('http://www.quirksmode.org/html5/videos/big_buck_bunny.webm', 'http://requestb.in/1nm1vw11')
+check = client.check('nudity', 'wad')
+output = check.video('http://www.quirksmode.org/html5/videos/big_buck_bunny.webm', 'http://requestb.in/1nm1vw11')
+
+print(output)
