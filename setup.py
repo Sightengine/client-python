@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
   name = 'sightengine',
   packages = ['sightengine'],
-  version = '1.2.2',
+  version = '1.3.0',
   description = 'Sightengine Python client',
   author = 'Sightengine',
   author_email='support@sightengine.com',
