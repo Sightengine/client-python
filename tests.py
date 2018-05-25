@@ -63,5 +63,8 @@ class Tests(unittest.TestCase):
         video_output = check.video('https://sightengine.com/assets/stream/examples/funfair.mp4', 'http://requestb.in/1nm1vw11')
         self.assertEqual('success', video_output['status'])
 
+        video_output2 = check.video_sync('https://sightengine.com/assets/stream/examples/funfair.mp4')
+        self.assertEqual('success', video_output2['status'])
+
 if __name__ == '__main__':
     unittest.main()

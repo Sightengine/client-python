@@ -69,6 +69,12 @@ class Check(object):
         output = json.loads(r.text)
         return output
 
+    def video_sync(self, videoUrl):
+        r = requests.get(self.endpoint + 'video/check-sync.json', params={'models': self.modelsType, 'stream_url': videoUrl, 'api_user': self.api_user, 'api_secret': self.api_secret}, headers=headers)
+
+        output = json.loads(r.text)
+        return output
+
 
 
 

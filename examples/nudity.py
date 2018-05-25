@@ -27,6 +27,9 @@ print(output3)
 ####### check video
 
 check = client.check('nudity', 'wad')
-output = check.video('http://www.quirksmode.org/html5/videos/big_buck_bunny.webm', 'http://requestb.in/1nm1vw11')
+output = check.video('https://sightengine.com/assets/stream/examples/funfair.mp4', 'http://requestb.in/1nm1vw11')
+
+output2 = check.video_sync('https://sightengine.com/assets/stream/examples/funfair.mp4')
 
 print(output)
+print(output2)
