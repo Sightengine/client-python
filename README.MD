@@ -79,7 +79,7 @@ client.check('nudity').video('https://sightengine.com/assets/stream/examples/fun
 
 Once you have submitted the video, the API will start POSTing moderation updates to your callback URL.
 
-Please see our [Documentation](https://sightengine/docs) for more details.
+Please see our [Documentation](https://sightengine.com/docs) for more details.
 
 # Feedback
 In order to report a misclassification, you need to report the image that was misclassified, the model that was run on this image (models are nudity, face, type, wad), and the correct class of the image.
